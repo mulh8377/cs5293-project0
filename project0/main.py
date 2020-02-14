@@ -1,10 +1,8 @@
 import argparse
 
-import project0
-
-import project0.modules.Crime.crime as Crime
-import project0.modules.Editor.tosspdf as T_PDF
-import project0.modules.Storage.tosstorage as T_Storage
+import modules.Crime.crime as Crime
+import modules.Editor.tosspdf as T_PDF
+import modules.Storage.tosstorage as T_Storage
 
 
 def main():

@@ -1,16 +1,16 @@
 #import project0.modules.Crime.crime as Crime
 
 def test_tuple_length():
-    from project0.modules.Crime import crime as Crime
-    c_test = Crime.CrimeReport("", "", "", "", "", "", "", "", "", "")
+    import project0.modules.Crime as Cr
+    c_test = Cr.crime.CrimeReport("", "", "", "", "", "", "", "", "", "")
 
     assert len(c_test.return_scene()) == 5
     assert len(c_test.return_officer()) == 5
     assert len(c_test.return_criminal()) == 5
 
 def test_object_type():
-    from project0.modules.Crime import crime as Crime
-    c_test = Crime.CrimeReport("", "", "", "", "", "", "", "", "", "")
+    import project0.modules.Crime as Cr
+    c_test = Cr.crime.CrimeReport("", "", "", "", "", "", "", "", "", "")
     assert type(c_test) == Crime.CrimeReport
 
     officer_test = Crime.Officer(c_test.return_officer())
@@ -23,8 +23,8 @@ def test_object_type():
     assert type(criminal_test) == Crime.Criminal
 
 def test_object_eq():
-    from project0.modules.Crime import crime as Crime
-    c_test = Crime.CrimeReport("", "", "", "", "", "", "", "", "", "")
+    import project0.modules.Crime as Cr
+    c_test = Cr.crime.CrimeReport("", "", "", "", "", "", "", "", "", "")
     copy_test = c_test.__copy__()
     assert c_test == copy_test
 

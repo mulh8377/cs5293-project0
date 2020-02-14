@@ -12,6 +12,7 @@ argparse = "*"
 pandas = "*"
 pypdf2 = "*"
 pdfminer = "*"
+scrapy = "*"
 
 [requires]
 python_version = "3.6"

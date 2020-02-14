@@ -60,7 +60,7 @@ class Scene:
         self.case_no = scene_tuple[0]
         self.date = scene_tuple[1]
         self.id = scene_tuple[2]
-        self.birth = scene_tuple[3]
+        self.location = scene_tuple[3]
         self.offense = scene_tuple[4]
 
 if __name__ == "__main__":

@@ -14,5 +14,8 @@ clean-db:
 	bash scipts/clean-db.sh
 csv-db:
 	bash scripts/toss-csv.sh
+compile-util:
+	nim c --threads:on --app:lib --out:project0/modules/Utility/toss_hash.so project0/modules/Utility/toss_hash.nim
+	nim c --threads:on --app:lib --out:project0/modules/Utility/toss_download.so project0/modules/Utility/toss_download.nim
 run:
 	pipenv run python3 project0/main.py

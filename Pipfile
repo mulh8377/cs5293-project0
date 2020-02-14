@@ -10,6 +10,8 @@ numpy = "*"
 pytest = "*"
 argparse = "*"
 pandas = "*"
+pypdf2 = "*"
+pdfminer = "*"
 
 [requires]
 python_version = "3.6"

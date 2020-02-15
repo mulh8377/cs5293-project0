@@ -12,4 +12,5 @@ class NormanPDSpider(scrapy.Spider):
             yield scrapy.Request(url=url, callback=self.parse)
 
     def parse(self, response):
-        print(response)
+        for results in response.xpath("//table[@id='filebrowser-file-listing']//tbody"):
+            print(results.extract())

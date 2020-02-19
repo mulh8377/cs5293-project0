@@ -14,7 +14,7 @@ def fetch_all(dir="../../../data/txt/"):
     storage_pdf = []
 
     for count, element in enumerate(content, 0):
-        print(count, element)
+        print(f"file-number:{count}\t downloading:{element}")
         tag = re.split("/657/", element)
         tag[0] = count
         path = tag[1]

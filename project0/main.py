@@ -3,6 +3,7 @@ import tempfile
 import sys
 from os import *
 import PyPDF2
+import time
 import subprocess
 import modules.Crime.crime as Crime
 import modules.Editor.tosspdf as T_PDF
@@ -17,12 +18,13 @@ def fetchincidents(url):
     extractincidents(data=data_loc)
 
 def extractincidents(data):
-    print("create the pdf file here")
+    #print("extract the pdf fields here")
     """
     TODO:
     """
     subprocess.call(['bash', './scripts/transform-pdf.sh'])
-
+    time.sleep(0.3)
+    subprocess.call(['cat', './data/txt/arrest/ArrestSummary.txt'])
     #results = T_Utility.extract_results(data)
 
 

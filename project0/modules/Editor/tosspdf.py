@@ -10,6 +10,7 @@ import numpy as np
 
 
 async def load_pdf_directory(dir_path="./data/pdf/"):
+
     files = os.listdir(path=dir_path)
 
     out_dir = "./data/txt/"
@@ -115,10 +116,5 @@ async def main():
     await load_pdf_directory()
 
 if __name__ == "__main__":
-    #print(f"tosspdf.py is designed to handle pdf reading, manipulation, and transformation")
-    #file = "/home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/data/pdf/2020-02-05%20Daily%20Arrest%20Summary.pdf"
-    #pdf_read = PyPDF2.PdfFileReader(file)
-    #page_obj = pdf_read.getPage(0)
-    #print(page_obj.extractText())
     loop = asyncio.get_event_loop()
     loop.run_until_complete(main())

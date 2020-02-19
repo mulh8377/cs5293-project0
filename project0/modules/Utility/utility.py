@@ -4,12 +4,12 @@ import asyncio
 import re
 import PyPDF2
 import numpy as np
-import project0.modules.Utility.toss_download as td
+from . import toss_download as td
 
 def fetch_all(dir="../../../data/txt/"):
     res = td.open_file()
     content = res[0].splitlines()
-    print(content)
+    #print(content)
 
     storage_pdf = []
 

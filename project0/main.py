@@ -9,14 +9,16 @@ import modules.Storage.tosstorage as T_Storage
 import modules.Utility.utility as T_Utility
 
 def fetchincidents(url):
-    data_loc = T_Utility.fetch_results(url)
+    if url == "all":
+        data_loc = T_Utility.fetch_all()
+    else:
+        data_loc = T_Utility.fetch_results(url)
     extractincidents(data=data_loc)
 
 def extractincidents(data):
-    results = T_Utility.extract_results(data)
-    r = filter(T_PDF.filterHeaderIncidient, results)
-    for i in r:
-        print(i)
+    print("create the pdf file here")
+    #results = T_Utility.extract_results(data)
+
 
 def main(url):
     print(url)

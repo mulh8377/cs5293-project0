@@ -1,0 +1,16 @@
+{"compile":[
+["/home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/project0/modules/Storage/nim/nimcache/jah_db.c", "gcc -c  -w  -I/usr/lib/nim -o /home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/project0/modules/Storage/nim/nimcache/jah_db.o /home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/project0/modules/Storage/nim/nimcache/jah_db.c"],
+],
+"link":[
+"/home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/project0/modules/Storage/nim/nimcache/jah_db.o",
+"/home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/project0/modules/Storage/nim/nimcache/stdlib_system.o",
+"/home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/project0/modules/Storage/nim/nimcache/stdlib_db_sqlite.o",
+"/home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/project0/modules/Storage/nim/nimcache/stdlib_strutils.o",
+"/home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/project0/modules/Storage/nim/nimcache/stdlib_parseutils.o",
+"/home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/project0/modules/Storage/nim/nimcache/stdlib_math.o",
+"/home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/project0/modules/Storage/nim/nimcache/stdlib_algorithm.o",
+"/home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/project0/modules/Storage/nim/nimcache/stdlib_sqlite3.o",
+"/home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/project0/modules/Storage/nim/nimcache/stdlib_db_common.o"
+],
+"linkcmd": "gcc   -o /home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/project0/modules/Storage/nim/jah_db  /home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/project0/modules/Storage/nim/nimcache/jah_db.o /home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/project0/modules/Storage/nim/nimcache/stdlib_system.o /home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/project0/modules/Storage/nim/nimcache/stdlib_db_sqlite.o /home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/project0/modules/Storage/nim/nimcache/stdlib_strutils.o /home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/project0/modules/Storage/nim/nimcache/stdlib_parseutils.o /home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/project0/modules/Storage/nim/nimcache/stdlib_math.o /home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/project0/modules/Storage/nim/nimcache/stdlib_algorithm.o /home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/project0/modules/Storage/nim/nimcache/stdlib_sqlite3.o /home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/project0/modules/Storage/nim/nimcache/stdlib_db_common.o  -lm   -ldl"
+}

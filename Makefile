@@ -55,4 +55,6 @@ run-tests:
 	bash scripts/run-tests.sh
 print-tests:
 	bash scripts/print-tests.sh
+run-project: data-crawl
+	pipenv run python project0/main.py --arrests all
 ############## builds the project and runs the main function ##################

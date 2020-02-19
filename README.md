@@ -6,6 +6,23 @@ Jared Mulhausen
 - email         ->      jaredmulhausen@ou.edu
 - student_id    ->      113358377
 
+## Fields that Need Additional Editing
+Case Number
+
+Arrest Location
+
+Offense
+
+Arrestee
+
+Arrestee Address
+
+City
+
+Status
+
+Officer
+
 # cs5293-project0
 The Norman, Oklahoma police department regularly reports of incidents arrests and other activity. This project is meant to
 showcase some recent skills we learned with the linux commands and python modules used to scrape data from the world wide web.

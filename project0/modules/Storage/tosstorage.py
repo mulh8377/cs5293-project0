@@ -4,8 +4,10 @@ import modules.Crime.crime as crime
 
 def create_db():
     os.system("bash /home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/scripts/jah-db.sh")
+
 def kill_db():
     os.system("bash /home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/scripts/clean-db.sh")
+
 def connect_to_db():
     return sqlite3.connect('../../../normanpd.db')
 

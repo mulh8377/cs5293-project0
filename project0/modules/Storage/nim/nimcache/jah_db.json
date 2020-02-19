@@ -1,5 +1,4 @@
 {"compile":[
-["/home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/project0/modules/Storage/nim/nimcache/jah_db.c", "gcc -c  -w  -I/usr/lib/nim -o /home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/project0/modules/Storage/nim/nimcache/jah_db.o /home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/project0/modules/Storage/nim/nimcache/jah_db.c"],
 ],
 "link":[
 "/home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/project0/modules/Storage/nim/nimcache/jah_db.o",

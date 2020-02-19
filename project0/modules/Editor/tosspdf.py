@@ -1,43 +1,124 @@
 import os
+import re
+import time
+import asyncio
+import subprocess
 import sys
 import PyPDF2
 import pandas as pd
 import numpy as np
 
-def filterHeaderCase(data):
-    headers = ["Date / Time Reported", "Case Number", "Location", "Offense(s)", "Reporting Officer"]
-    if headers in data:
-        return False
+
+async def load_pdf_directory(dir_path="./data/pdf/"):
+    files = os.listdir(path=dir_path)
+
+    out_dir = "./data/txt/"
+
+    case_files = [case for case in files if re.search(r"Case%", case)]
+    await create_txt_directory(type='case', out_path=out_dir+'case/', files=case_files)
+    #print(case_files)
+    res_c = await transform_case_summary(pdf_path=dir_path, text_path=out_dir + 'case/',
+                                 files=case_files)
+    time.sleep(0.3)
+
+    incident_files = [inc for inc in files if re.search(r"Incident%", inc)]
+    await create_txt_directory(type='inc', out_path=out_dir + 'incident/', files=incident_files)
+    #print(incident_files)
+    res_i = await transform_incident_summary(pdf_path=dir_path, text_path=out_dir + 'incident/',files=incident_files)
+    time.sleep(0.3)
+
+    arrest_files = [arr for arr in files if re.search(r"Arrest%", arr)]
+    await create_txt_directory(type='arr', out_path=out_dir + 'arrest/', files=arrest_files)
+    res_arr = await transform_arrest_summary(pdf_path=dir_path, text_path=out_dir + 'arrest/', files=arrest_files)
+
+    time.sleep(0.3)
+    #print(arrest_files)
+
+async def create_txt_directory(type, out_path, files):
+    ext = ".txt"
+    if type == "case":
+        for f in files:
+            #f.replace('.pdf', '.txt')
+            fp = os.open(out_path+f+ext, os.O_CREAT)
+            os.close(fp)
+    elif type == "inc":
+        for f in files:
+            #f.replace('.pdf', '.txt')
+            fp = os.open(out_path+f+ext, os.O_CREAT)
+            os.close(fp)
+    elif type == "arr":
+        for f in files:
+            #f.replace('.pdf', '.txt')
+            fp = os.open(out_path+f+ext, os.O_CREAT)
+            os.close(fp)
     else:
-        return True
-def filterHeaderIncidient(data):
-    headers = ["Date / Time", "Incident Number", "Location", "Nature", "Incident ORI"]
-    if headers in data:
-        return False
-    else:
-        return True
+        return 0
+    return 1
 
-def filterHeaderReport(data):
-    headers = ["Arrest Date / Time", "Case Number", "Arrest Location",
-               "Offense", "Arrestee", "Arrestee Birthday", "Arrestee Address",
-               "City", "State", "Zip Code", "Status", "Officer"]
-    if headers in data:
-        return False
-    else:
-        return True
-def transform_txt_case_summary(info):
-    filter_cases = filter(filterHeaderCase, info)
-    return filter_cases
+async def transform_case_summary(pdf_path, text_path, files):
+    #filter_cases = filter(filterHeaderCase, info)
+    ext = ".txt"
+    for f in files:
+        #pdf_file_pntr = os.open(pdf_path + f, os.O_RDONLY)
+        pdf_reader = PyPDF2.PdfFileReader(pdf_path + f)
+        total_pages = pdf_reader.numPages
+        page_objects = []
+        txt_info = []
+        for cnt in range(0, total_pages, 1):
+            page_objects.append(pdf_reader.getPage(cnt))
+        for page in page_objects:
+            txt_info.append(page.extractText())
+        with open(text_path + f + ext, "w+") as fp:
+            for txt in txt_info:
+                fp.write(repr(txt))
+            fp.close()
+    return 1
 
-def transform_txt_incident_summary(info):
-    filter_incidents = filter(filterHeaderIncidient, info)
-    return filter_incidents
+async def transform_incident_summary(pdf_path, text_path, files):
+    #filter_cases = filter(filterHeaderCase, info)
+    ext = ".txt"
+    for f in files:
+        #pdf_file_pntr = os.open(pdf_path + f, os.O_RDONLY)
+        pdf_reader = PyPDF2.PdfFileReader(pdf_path + f)
+        total_pages = pdf_reader.numPages
+        page_objects = []
+        txt_info = []
+        for cnt in range(0, total_pages, 1):
+            page_objects.append(pdf_reader.getPage(cnt))
+        for page in page_objects:
+            txt_info.append(page.extractText())
+        with open(text_path + f + ext, "w+") as fp:
+            for txt in txt_info:
+                fp.write(repr(txt))
+            fp.close()
+    return 1
 
-def transform_txt_arrest_summary(info):
-    filter_summaries = filter(filterHeaderReport, info)
-    return filter_summaries
+async def transform_arrest_summary(pdf_path, text_path, files):
+    ext = ".txt"
+    for f in files:
+        #pdf_file_pntr = os.open(pdf_path + f, os.O_RDONLY)
+        pdf_reader = PyPDF2.PdfFileReader(pdf_path + f)
+        total_pages = pdf_reader.numPages
+        page_objects = []
+        txt_info = []
+        for cnt in range(0, total_pages, 1):
+            page_objects.append(pdf_reader.getPage(cnt))
+        for page in page_objects:
+            txt_info.append(page.extractText())
+        with open(text_path + f + ext, "w+") as fp:
+            for txt in txt_info:
+                fp.write(repr(txt))
+            fp.close()
+    return 1
 
+async def main():
+    await load_pdf_directory()
 
 if __name__ == "__main__":
-    print(f"tosspdf.py is designed to handle pdf reading, manipulation, and transformation")
-    file = "/home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/data/pdf/2020-02-05 Daily Case Summary.pdf"
+    #print(f"tosspdf.py is designed to handle pdf reading, manipulation, and transformation")
+    #file = "/home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/data/pdf/2020-02-05%20Daily%20Arrest%20Summary.pdf"
+    #pdf_read = PyPDF2.PdfFileReader(file)
+    #page_obj = pdf_read.getPage(0)
+    #print(page_obj.extractText())
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(main())

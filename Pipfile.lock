@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "de86164863f9befb1316a16fadc86bd479c135cb1d6a537e36f6aff034fe4f68"
+            "sha256": "58d8a20d3dfe8f35c196e33ca149bec0c5788adaee88e7b91b50f88a1b027652"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -110,6 +110,13 @@
                 "sha256:f95f8dedd925fd8f54edb3d2dfb44c190d9d18512377d3c1e2388d16126879bc"
             ],
             "version": "==1.1.0"
+        },
+        "distro": {
+            "hashes": [
+                "sha256:362dde65d846d23baee4b5c058c8586f219b5a54be1cf5fc6ff55c4578392f57",
+                "sha256:eedf82a470ebe7d010f1872c17237c79ab04097948800029994fa458e52fb4b4"
+            ],
+            "version": "==1.4.0"
         },
         "hyperlink": {
             "hashes": [
@@ -408,6 +415,14 @@
                 "sha256:8f3cd2e254d8f793e7f3d6d9df77b92252b52637291d0f0da013c76ea2724b6c"
             ],
             "version": "==1.14.0"
+        },
+        "tabula-py": {
+            "hashes": [
+                "sha256:1fa8dcbb581638fbcff80ef651ebc41dd44d5ba6b63c01d3fb665bf7e7a65e91",
+                "sha256:ac5c51290bb8e5f7dc86a9b824bf7c49ea0b6569278b27018f3e41a12fec2bfe"
+            ],
+            "index": "pypi",
+            "version": "==2.0.4"
         },
         "twisted": {
             "hashes": [

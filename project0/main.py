@@ -3,10 +3,10 @@ import tempfile
 import sys
 from os import *
 import PyPDF2
-import project0.modules.Crime.crime as Crime
-import project0.modules.Editor.tosspdf as T_PDF
-import project0.modules.Storage.tosstorage as T_Storage
-import project0.modules.Utility.utility as T_Utility
+import modules.Crime.crime as Crime
+import modules.Editor.tosspdf as T_PDF
+import modules.Storage.tosstorage as T_Storage
+import modules.Utility.utility as T_Utility
 
 def fetchincidents(url):
     data_loc = T_Utility.fetch_results(url)

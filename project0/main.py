@@ -10,15 +10,13 @@ import modules.Utility.utility as T_Utility
 
 def fetchincidents(url):
     data_loc = T_Utility.fetch_results(url)
-    extract_incidents(data=data_loc)
+    extractincidents(data=data_loc)
 
-def extract_incidents(data):
-    pdfReader = PyPDF2.PdfFileReader(data)
-    print(pdfReader.numPages)
-    page_obj = pdfReader.getPage(0)
-
-    print(page_obj.extractText())
-
+def extractincidents(data):
+    results = T_Utility.extract_results(data)
+    r = filter(T_PDF.filterHeaderIncidient, results)
+    for i in r:
+        print(i)
 
 def main(url):
     print(url)

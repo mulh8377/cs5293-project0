@@ -12,6 +12,10 @@ class CrimeReport:
         self.arrest_status = status
         self.arresting_officer = officer
 
+    def return_report(self):
+        return (self.arrest_date, self.case_number, self.arrest_location,
+                self.arrest_offense, self.arrestee_identification, self.arrestee_birth,
+                self.arrest_city, self.arrest_zipcode, self.arrest_status, self.arresting_officer)
 
     def __str__(self):
         return "Crime Report Object"
@@ -64,7 +68,7 @@ class Scene:
         self.offense = scene_tuple[4]
 
 if __name__ == "__main__":
-    c_test = CrimeReport("", "", "", "", "", "", "", "", "", "")
+    """c_test = CrimeReport("", "", "", "", "", "", "", "", "", "")
     print(c_test)
 
     test_ret_criminal = c_test.return_criminal()
@@ -82,4 +86,5 @@ if __name__ == "__main__":
 
 
     print(test_scene)
-
+    """
+    pass

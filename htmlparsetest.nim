@@ -5,8 +5,8 @@ import os       # To use splitFile
 import strutils # To use cmpIgnoreCase
 
 #proc transformHyperlinks() =
-let html = loadHtml(./"data/html/crawl_test.html")
-  
+let html = loadHtml("data/html/crawl_test.html")
+
 for a in html.findAll("a"):
   if a.attrs.hasKey "href":
     echo splitFile(a.attrs["href"])

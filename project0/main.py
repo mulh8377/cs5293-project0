@@ -12,7 +12,7 @@ import modules.Utility.utility as T_Utility
 
 def fetchincidents(url):
     if url == "all":                            # default parameter if make run-project is called.
-        data_loc = T_Utility.fetch_all()
+        data_loc = T_Utility.fetch_txt_all()
     else:
         data_loc = T_Utility.fetch_results(url) # alternative if user runs pipenv run python project0/main.py --arrests <url>
     extractincidents(data=data_loc)
@@ -24,7 +24,7 @@ def extractincidents(data):
     """
     subprocess.call(['bash', './scripts/transform-pdf.sh'])
     time.sleep(0.3)
-    subprocess.call(['cat', './data/txt/arrest/ArrestSummary.txt'])
+    #subprocess.call(['cat', './data/txt/arrest/ArrestSummary.txt'])
     #results = T_Utility.extract_results(data)
 
 

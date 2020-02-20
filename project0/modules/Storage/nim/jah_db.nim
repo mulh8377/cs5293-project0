@@ -10,7 +10,9 @@ db.exec(sql"""CREATE TABLE CrimeReport (
     offense TEXT,
     arresteename TEXT,
     arresteebirthday TEXT,
-    arrestee_address TEXT,
+    city TEXT,
+    state TEXT,
+    zip TEXT,
     status TEXT,
     officer TEXT)""")
 

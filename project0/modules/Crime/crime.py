@@ -1,6 +1,6 @@
 class CrimeReport:
     def __init__(self, date_of_arrest: str, case_no: str, loc_of_arrest: str, offense: str, arrestee: str,
-                 dob_of_arrestee: str, city_of_arrest: str, zip_of_arrest: str, status: str, officer: str):
+                 dob_of_arrestee: str, city_of_arrest: str, state_of_arrest: str, zip_of_arrest: str, status: str, officer: str):
         self.arrest_date = date_of_arrest
         self.case_number = case_no
         self.arrest_location = loc_of_arrest
@@ -8,6 +8,7 @@ class CrimeReport:
         self.arrestee_identification = arrestee
         self.arrestee_birth = dob_of_arrestee
         self.arrest_city = city_of_arrest
+        self.arrest_state = state_of_arrest
         self.arrest_zipcode = zip_of_arrest
         self.arrest_status = status
         self.arresting_officer = officer
@@ -15,7 +16,8 @@ class CrimeReport:
     def return_report(self):
         return (self.arrest_date, self.case_number, self.arrest_location,
                 self.arrest_offense, self.arrestee_identification, self.arrestee_birth,
-                self.arrest_city, self.arrest_zipcode, self.arrest_status, self.arresting_officer)
+                self.arrest_city, self.arrest_state, self.arrest_zipcode,
+                self.arrest_status, self.arresting_officer)
 
     def __str__(self):
         return "Crime Report Object"

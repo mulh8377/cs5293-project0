@@ -3,25 +3,6 @@ platform linux -- Python 3.6.9, pytest-5.3.5, py-1.8.1, pluggy-0.13.1
 rootdir: /home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0
 collected 2 items
 
-tests/test_download.py FF                                                [100%]
+tests/test_download.py ..                                                [100%]
 
-=================================== FAILURES ===================================
-______________________________ test_download_one _______________________________
-
-    def test_download_one():
-        import project0.modules.Utility.utility as Ut
-        import os
->       os.remove("./data/pdf/test.pdf")
-E       FileNotFoundError: [Errno 2] No such file or directory: './data/pdf/test.pdf'
-
-tests/test_download.py:5: FileNotFoundError
-______________________________ test_download_all _______________________________
-
-    def test_download_all():
-        import project0.modules.Utility.utility as Ut
-        import os
->       os.remove("./data/pdf/test.pdf")
-E       FileNotFoundError: [Errno 2] No such file or directory: './data/pdf/test.pdf'
-
-tests/test_download.py:16: FileNotFoundError
-============================== 2 failed in 0.14s ===============================
+============================== 2 passed in 11.63s ==============================

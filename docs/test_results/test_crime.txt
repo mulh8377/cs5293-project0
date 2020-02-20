@@ -3,6 +3,26 @@ platform linux -- Python 3.6.9, pytest-5.3.5, py-1.8.1, pluggy-0.13.1
 rootdir: /home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0
 collected 3 items
 
-tests/test_crime.py ...                                                  [100%]
+tests/test_crime.py ..F                                                  [100%]
 
-============================== 3 passed in 0.01s ===============================
+=================================== FAILURES ===================================
+________________________________ test_object_eq ________________________________
+
+    def test_object_eq():
+        import project0.modules.Crime.crime as Cr
+        c_test = Cr.CrimeReport("", "", "", "", "", "", "", "", "", "", "")
+>       copy_test = c_test.__copy__()
+
+tests/test_crime.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <project0.modules.Crime.crime.CrimeReport object at 0x7f7aeb294c88>
+
+    def __copy__(self):
+        return CrimeReport(self.arrest_date, self.case_number, self.arrest_location,
+                           self.arrest_offense, self.arrestee_identification, self.arrestee_birth,
+>                          self.arrest_city, self.arrest_zipcode, self.arrest_status, self.arresting_officer)
+E       TypeError: __init__() missing 1 required positional argument: 'officer'
+
+project0/modules/Crime/crime.py:31: TypeError
+========================= 1 failed, 2 passed in 0.04s ==========================

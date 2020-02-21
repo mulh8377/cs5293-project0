@@ -14,6 +14,9 @@ build:
 	bash scripts/install-deps.sh
 	bash scripts/wipe-data.sh
 	bash scripts/clean-db.sh
+	rm -f data/csv/arrest/*.txt
+	rm -f data/csv/case/*.txt
+	rm -f data/csv/incident/*.txt
 #################### installation build commands above.###############
 send-update:
 	bash scripts/update-git.sh

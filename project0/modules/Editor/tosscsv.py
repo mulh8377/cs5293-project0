@@ -43,10 +43,24 @@ async def load_summaries(case_file, inc_file, arr_file):
 async def sum_transform_case(path="./data/csv/case/Summary.txt"):
     print(path)
 async def sum_transform_arr(path="./data/csv/arrest/Summary.txt"):
+    """
+    sed -i -e 's/-//g' data/csv/arrest/Summary.txt ## gets rid of '-'
+
+    sed -i -e 's/ /\n/g' data/csv/arrest/Summary.txt ## gets rid of ' \n'
+
+    sed -i -e 's/Daily//g' data/csv/arrest/Summary.txt ## gets rid of 'Daily'
+    sed -i -e 's/Arrest//g' data/csv/arrest/Summary.txt
+    sed -i -e 's/Activity//g' data/csv/arrest/Summary.txt
+
+    sed -i -e 's/(Public).nNORMAN//g' data/csv/arrest/Summary.txt
+    sed -i -e 's/POLICE//g' data/csv/arrest/Summary.txt
+    sed -i -e 's/DEPARTMENT.n'//g' data/csv/arrest/Summary.txt
+
+    """
     print(path)
+    subprocess.call(['bash', 'scripts/arrest-csv-clean.sh'])
 async def sum_transform_inc(path="./data/csv/arrest/Summary.txt"):
     print(path)
-
 async def main():
     c, i, a = await create_directories()
     await load_summaries(c, i, a)

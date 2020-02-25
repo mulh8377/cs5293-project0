@@ -3,6 +3,68 @@ platform linux -- Python 3.6.9, pytest-5.3.5, py-1.8.1, pluggy-0.13.1
 rootdir: /home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0
 collected 3 items
 
-tests/test_storage.py ...                                                [100%]
+tests/test_storage.py FFF                                                [100%]
 
-============================== 3 passed in 0.08s ===============================
+=================================== FAILURES ===================================
+_________________________________ test_insert __________________________________
+
+    def test_insert():
+        import project0.modules.Storage.tosstorage as St
+        import project0.modules.Crime.crime as Cr
+        import subprocess
+        c_test = Cr.CrimeReport("test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test")
+        summary = c_test.return_report()
+        assert len(summary) == 11
+        print(summary)
+>       St.insert_into_crime_report(c_test.return_report())
+
+tests/test_storage.py:9: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+summary = ('test', 'test', 'test', 'test', 'test', 'test', ...)
+
+    def insert_into_crime_report(summary: tuple):
+        connection = connect_to_db()
+        usr = connection.cursor()
+    
+>       usr.execute("INSERT INTO CrimeReport VALUES (?,?,?,?,?,?,?,?,?,?,?)", summary)
+E       sqlite3.OperationalError: no such table: CrimeReport
+
+project0/modules/Storage/tosstorage.py:17: OperationalError
+----------------------------- Captured stdout call -----------------------------
+('test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test')
+_______________________________ test_fetch_table _______________________________
+
+    def test_fetch_table():
+        import project0.modules.Storage.tosstorage as St
+>       storage = St.fetch_CrimeReport_table()
+
+tests/test_storage.py:15: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def fetch_CrimeReport_table():
+        connection = connect_to_db()
+        usr = connection.cursor()
+>       usr.execute("SELECT * from CrimeReport")
+E       sqlite3.OperationalError: no such table: CrimeReport
+
+project0/modules/Storage/tosstorage.py:26: OperationalError
+_______________________________ test_fetch_value _______________________________
+
+    def test_fetch_value():
+        import project0.modules.Storage.tosstorage as St
+>       storage1 = St.fetch_CrimeReport_value(field="arresttime", val="test")
+
+tests/test_storage.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+field = 'arresttime', val = 'test'
+
+    def fetch_CrimeReport_value(field: str, val: str):
+        connection = connect_to_db()
+        usr = connection.cursor()
+>       usr.execute("SELECT offense FROM CrimeReport WHERE ?=?", (field, val))
+E       sqlite3.OperationalError: no such table: CrimeReport
+
+project0/modules/Storage/tosstorage.py:34: OperationalError
+============================== 3 failed in 0.07s ===============================

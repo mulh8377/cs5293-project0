@@ -16,7 +16,7 @@ ________________________________ test_object_eq ________________________________
 tests/test_crime.py:28: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <project0.modules.Crime.crime.CrimeReport object at 0x7f7aeb294c88>
+self = <project0.modules.Crime.crime.CrimeReport object at 0x7f58005d4eb8>
 
     def __copy__(self):
         return CrimeReport(self.arrest_date, self.case_number, self.arrest_location,
@@ -25,4 +25,4 @@ self = <project0.modules.Crime.crime.CrimeReport object at 0x7f7aeb294c88>
 E       TypeError: __init__() missing 1 required positional argument: 'officer'
 
 project0/modules/Crime/crime.py:31: TypeError
-========================= 1 failed, 2 passed in 0.04s ==========================
+========================= 1 failed, 2 passed in 0.07s ==========================

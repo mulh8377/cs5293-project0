@@ -1,14 +1,14 @@
 import sqlite3
+import subprocess
 import os
-
 def create_db():
     os.system("bash /home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/scripts/jah-db.sh")
-
+    #subprocess.call(['bash', 'projects/cs5293-project0/scripts/jad-db.sh'])
 def kill_db():
     os.system("bash /home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/scripts/clean-db.sh")
-
+    #subprocess.call(['bash', 'projects/cs5293-project0/scripts/clean-db.sh'])
 def connect_to_db():
-    return sqlite3.connect('/home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/normanpd.db')
+    return sqlite3.connect('normanpd.db')
 
 def insert_into_crime_report(summary: tuple):
     connection = connect_to_db()

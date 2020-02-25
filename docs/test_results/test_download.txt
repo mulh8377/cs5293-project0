@@ -3,6 +3,43 @@ platform linux -- Python 3.6.9, pytest-5.3.5, py-1.8.1, pluggy-0.13.1
 rootdir: /home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0
 collected 2 items
 
-tests/test_download.py ..                                                [100%]
+tests/test_download.py F.                                                [100%]
 
-============================== 2 passed in 11.63s ==============================
+=================================== FAILURES ===================================
+______________________________ test_download_one _______________________________
+
+    def test_download_one():
+        import project0.modules.Utility.utility as Ut
+        import os
+        storage = Ut.fetch_results(url="http://normanpd.normanok.gov/filebrowser_download/657/2020-02-11%20Daily%20Incident%20Summary.pdf",
+>                                  file="test.pdf")
+
+tests/test_download.py:6: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+project0/modules/Utility/utility.py:25: in fetch_results
+    urllib.request.urlretrieve(url, dir+file)
+/usr/lib/python3.6/urllib/request.py:248: in urlretrieve
+    with contextlib.closing(urlopen(url, data)) as fp:
+/usr/lib/python3.6/urllib/request.py:223: in urlopen
+    return opener.open(url, data, timeout)
+/usr/lib/python3.6/urllib/request.py:532: in open
+    response = meth(req, response)
+/usr/lib/python3.6/urllib/request.py:642: in http_response
+    'http', request, response, code, msg, hdrs)
+/usr/lib/python3.6/urllib/request.py:570: in error
+    return self._call_chain(*args)
+/usr/lib/python3.6/urllib/request.py:504: in _call_chain
+    result = func(*args)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <urllib.request.HTTPDefaultErrorHandler object at 0x7fe8020aac18>
+req = <urllib.request.Request object at 0x7fe802bb4e80>
+fp = <http.client.HTTPResponse object at 0x7fe8035977b8>, code = 404
+msg = 'Not Found', hdrs = <http.client.HTTPMessage object at 0x7fe8035a26d8>
+
+    def http_error_default(self, req, fp, code, msg, hdrs):
+>       raise HTTPError(req.full_url, code, msg, hdrs, fp)
+E       urllib.error.HTTPError: HTTP Error 404: Not Found
+
+/usr/lib/python3.6/urllib/request.py:650: HTTPError
+========================= 1 failed, 1 passed in 14.21s =========================

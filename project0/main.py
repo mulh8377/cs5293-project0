@@ -5,6 +5,7 @@ from os import *
 import PyPDF2
 import time
 import subprocess
+import pandas as pd
 import modules.Crime.crime as Crime
 import modules.Editor.tosspdf as T_PDF
 import modules.Storage.tosstorage as T_Storage
@@ -26,14 +27,30 @@ def extractincidents(data):
     time.sleep(0.3)
     #subprocess.call(['cat', './data/txt/arrest/ArrestSummary.txt'])
     #results = T_Utility.extract_results(data)
-
-
+    data = pd.read_csv('./data/csv/arrest/arrest.csv')
+    #print(data)
+    #data.to_sql('CrimeReport', T_Storage.connect_to_db(), if_exists='append', index=False)
+    importincidents(data)
+def importincidents(data):
+    #print(data)
+    #connection = T_Storage.connect_to_db()
+    #print(connection)
+    summary_tuples = list(data.itertuples(index=False, name=None))
+    #print(summary_tuples)
+    for row, summary in enumerate(summary_tuples):
+        T_Storage.insert_into_crime_report(summary)
+        time.sleep(0.1)
+        print(f'added: {summary} \t from row #: {row}')
+    #data.to_sql("CrimeReport", connection, if_exists='append', index=False)
+def printdatabase():
+    elements_in_db = T_Storage.fetch_CrimeReport_table()
+    print(elements_in_db)
 def main(url):
     T_Storage.create_db()                       # create the new database
     #print(url)
     #fetchincidents(url)
     fetchincidents(url)
-
+    printdatabase()
 
 if __name__ == "__main__":
     T_Storage.kill_db()                         # destroy the existing database

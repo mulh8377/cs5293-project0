@@ -104,25 +104,35 @@ async def sum_transform_arr(path="./data/csv/arrest/CleanSummary.txt"):
         await analyze_arrest_csv()
 
 async def create_clean_csv_arr(clean_line: str, FILE="./data/csv/arrest/clean.csv"):
-    print(repr(clean_line))
+    #print(repr(clean_line))
     better_line = clean_line.replace(' \\t', ' ')
     if len(better_line) > 0:
         field_line = better_line.replace('\\t', ', ')
         with open(FILE, 'a+') as cln:
-            print(field_line)
+            #print(field_line)
             cln.write(field_line)
             #zcln.write('\n')
-            print("file opened")
+            #print("file opened")
         cln.close()
 
 async def analyze_arrest_csv(FILE="./data/csv/arrest/clean.csv"):
-
+    correct_data = []
     with open(FILE, 'r') as rdr:
         rows = rdr.readlines()
         for r in rows:
             total_commas_in_row = comma_counter(r)
-            print(f'commas: {total_commas_in_row} \t info {r}')
+            #print(f'commas: {total_commas_in_row} \t info {r}')
+            if total_commas_in_row == 11:
+                correct_data.append(r)
     rdr.close()
+    await create_arrest_csv(data=correct_data)
+async def create_arrest_csv(data: list, FILE="./data/csv/arrest/arrest.csv"):
+    header = "arrest_time, case_number, arrest_location, offense, arrestee_name, arrestee_birthday, city, state, zip, status, officer\n"
+    with open(FILE, 'w+') as fp:
+        fp.write(header)
+        for d in data:
+            fp.write(d)
+        fp.close()
 
 async def sum_transform_inc(path="./data/csv/arrest/Summary.txt"):
     print(path)

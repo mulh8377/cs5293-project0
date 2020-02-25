@@ -4,12 +4,12 @@ let db = open("normanpd.db", "", "", "")
 
 
 db.exec(sql"""CREATE TABLE CrimeReport (
-    arresttime TEXT,
-    casenumber TEXT,
+    arrest_time TEXT,
+    case_number TEXT,
     arrest_location TEXT,
     offense TEXT,
-    arresteename TEXT,
-    arresteebirthday TEXT,
+    arrestee_name TEXT,
+    arrestee_birthday TEXT,
     city TEXT,
     state TEXT,
     zip TEXT,

@@ -129,3 +129,4 @@ dmypy.json
 .idea/
 .vscode
 project0/modules/Storage/nim/nimache
+.idea

@@ -66,10 +66,10 @@ tyObject_Sqlite3_xRZkbCqVWSKf8kX4o9cbKXA* db_mGVHccK3U9aAs6NRgO9aHP9cQ;
 extern TFrame* framePtr_HRfVMH3jYeBJz6Q6X9b6Ptw;
 STRING_LITERAL(TM_Ag7ePA3FpL9cNsKq6eSdpOg_2, "normanpd.db", 11);
 STRING_LITERAL(TM_Ag7ePA3FpL9cNsKq6eSdpOg_3, "", 0);
-STRING_LITERAL(TM_Ag7ePA3FpL9cNsKq6eSdpOg_4, "CREATE TABLE CrimeReport (\012    arresttime TEXT,\012    casenumber "
-"TEXT,\012    arrest_location TEXT,\012    offense TEXT,\012    arresteena"
-"me TEXT,\012    arresteebirthday TEXT,\012    city TEXT,\012    state TEX"
-"T,\012    zip TEXT,\012    status TEXT,\012    officer TEXT)", 242);
+STRING_LITERAL(TM_Ag7ePA3FpL9cNsKq6eSdpOg_4, "CREATE TABLE CrimeReport (\012    arrest_time TEXT,\012    case_numbe"
+"r TEXT,\012    arrest_location TEXT,\012    offense TEXT,\012    arrestee"
+"_name TEXT,\012    arrestee_birthday TEXT,\012    city TEXT,\012    state"
+" TEXT,\012    zip TEXT,\012    status TEXT,\012    officer TEXT)", 246);
 STRING_LITERAL(TM_Ag7ePA3FpL9cNsKq6eSdpOg_5, "CREATE TABLE Scene (\012    caseno TEXT,\012    dateno TEXT,\012    loca"
 "tionat TEXT,\012    zipcode TEXT,\012    citylabel TEXT\012)", 114);
 STRING_LITERAL(TM_Ag7ePA3FpL9cNsKq6eSdpOg_6, "create table Officer ( \012    caseno TEXT,\012    dateno TEXT,\012    n"

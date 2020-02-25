@@ -42,15 +42,19 @@ def importincidents(data):
         time.sleep(0.1)
         print(f'added: {summary} \t from row #: {row}')
     #data.to_sql("CrimeReport", connection, if_exists='append', index=False)
-def printdatabase():
-    elements_in_db = T_Storage.fetch_CrimeReport_table()
-    print(elements_in_db)
+def getdatabase():
+    elements_in_db = pd.read_sql("SELECT * from CrimeReport", T_Storage.connect_to_db())
+    return elements_in_db
+    #print(elements_in_db)
+def status(dataframe: pd.DataFrame, row_len: int, total_out=1):
+    print(row_len, total_out)
 def main(url):
     T_Storage.create_db()                       # create the new database
     #print(url)
     #fetchincidents(url)
     fetchincidents(url)
-    printdatabase()
+    CrimeReport_DF = getdatabase()
+    status(CrimeReport_DF, CrimeReport_DF.size)
 
 if __name__ == "__main__":
     T_Storage.kill_db()                         # destroy the existing database

@@ -70,8 +70,8 @@ STRING_LITERAL(TM_Ag7ePA3FpL9cNsKq6eSdpOg_4, "CREATE TABLE CrimeReport (\012    
 "r TEXT,\012    arrest_location TEXT,\012    offense TEXT,\012    arrestee"
 "_name TEXT,\012    arrestee_birthday TEXT,\012    city TEXT,\012    state"
 " TEXT,\012    zip TEXT,\012    status TEXT,\012    officer TEXT)", 246);
-STRING_LITERAL(TM_Ag7ePA3FpL9cNsKq6eSdpOg_5, "CREATE TABLE Scene (\012    caseno TEXT,\012    dateno TEXT,\012    loca"
-"tionat TEXT,\012    zipcode TEXT,\012    citylabel TEXT\012)", 114);
+STRING_LITERAL(TM_Ag7ePA3FpL9cNsKq6eSdpOg_5, "CREATE TABLE Incident (\012    incident_number TEXT,\012    location "
+"TEXT,\012    nature TEXT,\012    incident_ori TEXT\012)", 109);
 STRING_LITERAL(TM_Ag7ePA3FpL9cNsKq6eSdpOg_6, "create table Officer ( \012    caseno TEXT,\012    dateno TEXT,\012    n"
 "amelabel TEXT,\012    locationlabel TEXT,\012    chargelabel TEXT\012 )", 125);
 STRING_LITERAL(TM_Ag7ePA3FpL9cNsKq6eSdpOg_7, "create table Criminal ( \012    caseno TEXT,\012    dateofarrest TEXT"
@@ -172,13 +172,13 @@ NIM_EXTERNC N_NOINLINE(void, NimMainModule)(void) {
 	nimln_(19, "jah_db.nim");
 	memset((void*)T2_, 0, sizeof(T2_));
 	exec_kASFnJjvwTJpKpmn9aQHmPg(db_mGVHccK3U9aAs6NRgO9aHP9cQ, ((NimStringDesc*) &TM_Ag7ePA3FpL9cNsKq6eSdpOg_5), T2_, 0);
-	nimln_(27, "jah_db.nim");
+	nimln_(26, "jah_db.nim");
 	memset((void*)T3_, 0, sizeof(T3_));
 	exec_kASFnJjvwTJpKpmn9aQHmPg(db_mGVHccK3U9aAs6NRgO9aHP9cQ, ((NimStringDesc*) &TM_Ag7ePA3FpL9cNsKq6eSdpOg_6), T3_, 0);
-	nimln_(35, "jah_db.nim");
+	nimln_(34, "jah_db.nim");
 	memset((void*)T4_, 0, sizeof(T4_));
 	exec_kASFnJjvwTJpKpmn9aQHmPg(db_mGVHccK3U9aAs6NRgO9aHP9cQ, ((NimStringDesc*) &TM_Ag7ePA3FpL9cNsKq6eSdpOg_7), T4_, 0);
-	nimln_(43, "jah_db.nim");
+	nimln_(42, "jah_db.nim");
 	close_yRzNipQFOsKqLVySy7Je9bw_2(db_mGVHccK3U9aAs6NRgO9aHP9cQ);
 	popFrame();
 }

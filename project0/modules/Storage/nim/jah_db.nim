@@ -16,12 +16,11 @@ db.exec(sql"""CREATE TABLE CrimeReport (
     status TEXT,
     officer TEXT)""")
 
-db.exec(sql"""CREATE TABLE Scene (
-    caseno TEXT,
-    dateno TEXT,
-    locationat TEXT,
-    zipcode TEXT,
-    citylabel TEXT
+db.exec(sql"""CREATE TABLE Incident (
+    incident_number TEXT,
+    location TEXT,
+    nature TEXT,
+    incident_ori TEXT
 )""")
 
 db.exec(sql"""create table Officer ( 

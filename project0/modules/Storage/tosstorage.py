@@ -20,6 +20,24 @@ def insert_into_crime_report(summary: tuple):
 
     connection.close() ## close connection
 
+def insert_into_incident_report(summary: tuple):
+    connection = connect_to_db()
+    usr = connection.cursor()
+
+    usr.execute("INSERT INTO Incident VALUES (?,?,?,?)", summary)
+
+    connection.commit()
+
+    connection.close() ## close connection
+
+def fetch_CrimeReport_table():
+    connection = connect_to_db()
+    usr = connection.cursor()
+    usr.execute("SELECT * from Incident")
+    storage = usr.fetchall()
+    connection.close()
+    return storage
+
 def fetch_CrimeReport_table():
     connection = connect_to_db()
     usr = connection.cursor()

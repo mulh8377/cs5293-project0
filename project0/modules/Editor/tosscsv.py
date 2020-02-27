@@ -1,6 +1,7 @@
 import os
 import subprocess
 import asyncio
+import re
 
 async def create_directories():
     arrest_csv = "./data/csv/arrest/"
@@ -29,7 +30,39 @@ async def move_inc_summary(dir):
     assert os.path.isdir(dir)
     subprocess.call(['cp', './data/txt/incident/IncidentSummary.txt', dir])
     subprocess.call(['mv', './data/csv/incident/IncidentSummary.txt', './data/csv/incident/Summary.txt'])
-    return os.path.isfile(dir + "Summary.txt")
+    FILE = "CleanSummary.txt"
+    if os.path.isfile(dir + FILE):
+        os.remove(dir + FILE)
+    stuff = []
+    flag = True
+    if os.path.isfile(dir + "Summary.txt"):
+        with open(dir + "Summary.txt", 'r') as inc:
+            stuff = inc.readlines()
+
+        #print(stuff)
+        for s in stuff:
+            #dates = re.findall('[0-9]/[0-9]+/[0-9][0-9][0-9][0-9] [0-9]+:[0-9][0-9]', s)
+            parser = re.split('[0-9]/[0-9]+/[0-9][0-9][0-9][0-9] [0-9]+:[0-9][0-9]', s)
+            #break
+        content = []
+        for p in parser:
+            content.append(p)
+        #for d in dates:
+            #print(d)
+        #print(len(dates))
+        parser.pop(len(parser) - 1)
+        #print(len(parser))
+        inc.close()
+    await clean_incidents(content, dir)
+
+async def clean_incidents(content, dir):
+    FILE = "clean.csv"
+    data = []
+    for c in content:
+        d = c.replace('\\n', ',')
+        data.append(d)
+    await create_inc_csv(data)
+
 async def move_arr_summary(dir):
     assert os.path.isdir(dir)
     FILE = "CleanSummary.txt"
@@ -70,9 +103,10 @@ async def create_clean_file(dir, field):
 async def load_summaries(case_file, inc_file, arr_file):
     if case_file:
         await sum_transform_case()
-    if inc_file:
+    if True:
         await sum_transform_inc()
     if arr_file:
+        #print('move arrest summaryies')
         await sum_transform_arr()
 async def sum_transform_case(path="./data/csv/case/Summary.txt"):
     print(path)
@@ -126,6 +160,20 @@ async def analyze_arrest_csv(FILE="./data/csv/arrest/clean.csv"):
                 correct_data.append(r)
     rdr.close()
     await create_arrest_csv(data=correct_data)
+
+async def analyze_inc_csv(FILE="./data/csv/arrest/clean.csv"):
+    correct_data = []
+    with open(FILE, 'r') as rdr:
+        rows = rdr.readlines()
+        for r in rows:
+            total_commas_in_row = comma_counter(r)
+            print(f'commas: {total_commas_in_row} \t info {r}')
+            correct_data.append(total_commas_in_row)
+
+
+    rdr.close()
+    return correct_data
+
 async def create_arrest_csv(data: list, FILE="./data/csv/arrest/arrest.csv"):
     header = "arrest_time, case_number, arrest_location, offense, arrestee_name, arrestee_birthday, city, state, zip, status, officer\n"
     with open(FILE, 'w+') as fp:
@@ -134,8 +182,35 @@ async def create_arrest_csv(data: list, FILE="./data/csv/arrest/arrest.csv"):
             fp.write(d)
         fp.close()
 
-async def sum_transform_inc(path="./data/csv/arrest/Summary.txt"):
-    print(path)
+async def create_inc_csv(content, FILE='./data/csv/incident/clean.csv'):
+    header = "incident_number, location, nature, incident_ori\n"
+    with open(FILE, 'w+') as fp:
+        fp.write(header)
+        for c in content:
+            fp.write(c)
+            fp.write('\n')
+    fp.close()
+    subprocess.call(['bash', 'scripts/inc-csv.sh'])
+
+
+async def sum_transform_inc(path="./data/csv/incident/clean.csv"):
+    #data = await analyze_inc_csv()
+    #print(data)
+    content = []
+    with open(path, 'r') as inc:
+        while True:
+            c = inc.readline()
+            if len(c) == 0:
+                break
+            if comma_counter(c) == 3:
+                content.append(c)
+    inc.close()
+    #print(content)
+    with open('./data/csv/incident/incident.csv', 'w+') as fp:
+        for c in content:
+            fp.write(c)
+        fp.close()
+
 
 def comma_counter(field: str):
     total = 0

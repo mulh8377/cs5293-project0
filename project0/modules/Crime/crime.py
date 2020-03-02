@@ -1,3 +1,10 @@
+"""
+:description:
+            python file that can create objects related to the data we are mining.
+            not currently used in the project.
+"""
+
+
 class CrimeReport:
     def __init__(self, date_of_arrest: str, case_no: str, loc_of_arrest: str, offense: str, arrestee: str,
                  dob_of_arrestee: str, city_of_arrest: str, state_of_arrest: str, zip_of_arrest: str, status: str, officer: str):

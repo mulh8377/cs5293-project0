@@ -88,8 +88,8 @@ def getdatabase(tipe):
         sys.exit(0)
     #type(elements_in_db)
     #print(elements_in_db)
-    instances = list(elements_in_db['nature'])
-    return instances
+    instances = list(elements_in_db['nature'])          # transform dataframe into a list
+    return instances                                    # lists have a nice count function that we will use in status
 def status(db_data):
     """
 
@@ -98,10 +98,10 @@ def status(db_data):
     """
     for d in db_data:
         cnt = db_data.count(d)
-        print(f'{d}|{cnt}')
+        print(f'{d}|{cnt}')         # do some printing
         while cnt > 0:
-            cnt -= 1
-            db_data.pop(cnt)
+            cnt -= 1                # move left
+            db_data.pop(cnt)        # pop from list
 
 def main(url, tipe=2):
     """
@@ -110,19 +110,19 @@ def main(url, tipe=2):
     :param tipe:
     :return:
     """
-    T_Storage.create_db()
+    T_Storage.create_db()   # initializes normanpd.db
     os.system('clear')      # create the new database
     #print(url)
     #fetchincidents(url)
-    fetchincidents(url, tipe)
-    df = getdatabase(tipe)
+    fetchincidents(url, tipe)       # lets grab some incidents from a given url and store them
+    df = getdatabase(tipe)          # lets grab the database and set it to a pandas dataframe
     #print(df)
-    status(df.copy(), len(df))
+    status(df.copy())               # lets do some cool printing stuff.
 
 if __name__ == "__main__":
 
     T_Storage.kill_db()                         # destroy the existing database
-    os.system('clear')
+    os.system('clear')                          ## clears up the terminal
 
     parser = argparse.ArgumentParser()
 
@@ -133,8 +133,8 @@ if __name__ == "__main__":
                         help="The incident summary url")
 
     args = parser.parse_args()
-    os.system('clear')
+    os.system('clear')              ## clears up the terminal
     if args.arrests:
         main(url=args.arrests, tipe=1)
     if args.incidents:
-        main(url=args.incidents, tipe=2)
+        main(url=args.incidents, tipe=2)        ## tipe is used to differentiate between arrest and incident

@@ -10,32 +10,52 @@ import numpy as np
 
 
 async def load_pdf_directory(dir_path="./data/pdf/"):
+    """
+    :description: loads all the pdf files in the data/pdf/ directory and starts the transformation process to txt.
+    :param dir_path:
+    :return:
+    """
 
     files = os.listdir(path=dir_path)
 
     out_dir = "./data/txt/"
 
     case_files = [case for case in files if re.search(r"Case%", case)]
-    await create_txt_directory(type='case', out_path=out_dir+'case/', files=case_files)
+
+    await create_txt_directory(type='case', out_path=out_dir+'case/', files=case_files)         # create case txt directory
+
     #print(case_files)
+
     res_c = await transform_case_summary(pdf_path=dir_path, text_path=out_dir + 'case/',
                                  files=case_files)
     time.sleep(0.3)
 
     incident_files = [inc for inc in files if re.search(r"Incident%", inc)]
-    await create_txt_directory(type='inc', out_path=out_dir + 'incident/', files=incident_files)
+
+    await create_txt_directory(type='inc', out_path=out_dir + 'incident/', files=incident_files) # create incident txt directory
+
     #print(incident_files)
     res_i = await transform_incident_summary(pdf_path=dir_path, text_path=out_dir + 'incident/',files=incident_files)
+
     time.sleep(0.3)
 
     arrest_files = [arr for arr in files if re.search(r"Arrest%", arr)]
+
     await create_txt_directory(type='arr', out_path=out_dir + 'arrest/', files=arrest_files)
+
     res_arr = await transform_arrest_summary(pdf_path=dir_path, text_path=out_dir + 'arrest/', files=arrest_files)
 
     time.sleep(0.3)
     #print(arrest_files)
 
 async def create_txt_directory(type, out_path, files):
+    """
+
+    :param type: checks if it's a case | incident | arrest
+    :param out_path: saves the file to the outpath
+    :param files:   iterates over the files and saves it to the outpath
+    :return: 1 (True) or 0 (False)
+    """
     ext = ".txt"
     if type == "case":
         for f in files:
@@ -57,6 +77,13 @@ async def create_txt_directory(type, out_path, files):
     return 1
 
 async def transform_case_summary(pdf_path, text_path, files):
+    """
+
+    :param pdf_path: gets the pdf
+    :param text_path: text_path to save the transfomed pdf
+    :param files: a list of files
+    :return: bool
+    """
     #filter_cases = filter(filterHeaderCase, info)
     ext = ".txt"
     for f in files:
@@ -77,6 +104,13 @@ async def transform_case_summary(pdf_path, text_path, files):
 
 async def transform_incident_summary(pdf_path, text_path, files):
     #filter_cases = filter(filterHeaderCase, info)
+    """
+
+    :param pdf_path: gets the pdf
+    :param text_path: text_path to save the transfomed pdf
+    :param files: a list of files
+    :return: bool
+    """
     ext = ".txt"
     for f in files:
         #pdf_file_pntr = os.open(pdf_path + f, os.O_RDONLY)
@@ -96,6 +130,13 @@ async def transform_incident_summary(pdf_path, text_path, files):
 
 async def transform_arrest_summary(pdf_path, text_path, files):
     ext = ".txt"
+    """
+
+    :param pdf_path: gets the pdf
+    :param text_path: text_path to save the transfomed pdf
+    :param files: a list of files
+    :return: bool
+    """
     for f in files:
         #pdf_file_pntr = os.open(pdf_path + f, os.O_RDONLY)
         pdf_reader = PyPDF2.PdfFileReader(pdf_path + f)

@@ -4,11 +4,12 @@ import asyncio
 import re
 
 async def create_directories():
+
     arrest_csv = "./data/csv/arrest/"
     case_csv = "./data/csv/case/"
     incident_csv = "./data/csv/incident/"
     if not os.path.isdir(incident_csv):
-        os.mkdir(incident_csv)
+        os.mkdir(incident_csv)          ## create dir if it doesn't exit
     #subprocess.call(['touch', incident_csv + 'clean.csv'])
     if not os.path.isdir(case_csv):
         os.mkdir(case_csv)
@@ -17,15 +18,15 @@ async def create_directories():
         os.mkdir(arrest_csv)
     #subprocess.call(['touch', arrest_csv + 'clean.csv'])
 
-    c_f = await move_case_summary(case_csv)
+    c_f = await move_case_summary(case_csv)         # a bunch of moves for txt files
     i_f = await move_inc_summary(incident_csv)
     a_f = await move_arr_summary(arrest_csv)
     return c_f, i_f, a_f
 async def move_case_summary(dir):
     """
 
-    :param dir:
-    :return:
+    :param dir:  location of files to bhe moved.
+    :return: bool
     """
     assert os.path.isdir(dir)
     subprocess.call(['cp', './data/txt/case/CaseSummary.txt', dir])
@@ -34,8 +35,8 @@ async def move_case_summary(dir):
 async def move_inc_summary(dir):
     """
 
-    :param dir:
-    :return:
+    :param dir:  location of files to bhe moved.
+    :return: bool
     """
     assert os.path.isdir(dir)
     subprocess.call(['cp', './data/txt/incident/IncidentSummary.txt', dir])
@@ -82,8 +83,8 @@ async def clean_incidents(content, dir):
 async def move_arr_summary(dir):
     """
 
-    :param dir:
-    :return:
+    :param dir:  location of files to bhe moved.
+    :return: bool
     """
     assert os.path.isdir(dir)
     FILE = "CleanSummary.txt"
@@ -241,7 +242,7 @@ async def create_arrest_csv(data: list, FILE="./data/csv/arrest/arrest.csv"):
 async def create_inc_csv(content, FILE='./data/csv/incident/clean.csv'):
     """
 
-    :param content:
+    :param content: lines to be written
     :param FILE:
     :return:
     """

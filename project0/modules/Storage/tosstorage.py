@@ -11,6 +11,11 @@ def connect_to_db():
     return sqlite3.connect('normanpd.db')
 
 def insert_into_crime_report(summary: tuple):
+    """
+
+    :param summary:
+    :return:
+    """
     connection = connect_to_db()
     usr = connection.cursor()
 
@@ -21,6 +26,11 @@ def insert_into_crime_report(summary: tuple):
     connection.close() ## close connection
 
 def insert_into_incident_report(summary: tuple):
+    """
+
+    :param summary:
+    :return:
+    """
     connection = connect_to_db()
     usr = connection.cursor()
 
@@ -31,6 +41,10 @@ def insert_into_incident_report(summary: tuple):
     connection.close() ## close connection
 
 def fetch_CrimeReport_table():
+    """
+
+    :return:
+    """
     connection = connect_to_db()
     usr = connection.cursor()
     usr.execute("SELECT * from Incident")
@@ -39,6 +53,10 @@ def fetch_CrimeReport_table():
     return storage
 
 def fetch_CrimeReport_table():
+    """
+
+    :return:
+    """
     connection = connect_to_db()
     usr = connection.cursor()
     usr.execute("SELECT * from CrimeReport")
@@ -47,6 +65,12 @@ def fetch_CrimeReport_table():
     return storage
 
 def fetch_CrimeReport_value(field: str, val: str):
+    """
+
+    :param field:
+    :param val:
+    :return:
+    """
     connection = connect_to_db()
     usr = connection.cursor()
     usr.execute("SELECT offense FROM CrimeReport WHERE ?=?", (field, val))

@@ -22,11 +22,21 @@ async def create_directories():
     a_f = await move_arr_summary(arrest_csv)
     return c_f, i_f, a_f
 async def move_case_summary(dir):
+    """
+
+    :param dir:
+    :return:
+    """
     assert os.path.isdir(dir)
     subprocess.call(['cp', './data/txt/case/CaseSummary.txt', dir])
     subprocess.call(['mv', './data/csv/case/CaseSummary.txt', './data/csv/case/Summary.txt'])
     return os.path.isfile(dir + "Summary.txt")
 async def move_inc_summary(dir):
+    """
+
+    :param dir:
+    :return:
+    """
     assert os.path.isdir(dir)
     subprocess.call(['cp', './data/txt/incident/IncidentSummary.txt', dir])
     subprocess.call(['mv', './data/csv/incident/IncidentSummary.txt', './data/csv/incident/Summary.txt'])
@@ -56,6 +66,12 @@ async def move_inc_summary(dir):
     await clean_incidents(content, dir)
 
 async def clean_incidents(content, dir):
+    """
+
+    :param content:
+    :param dir:
+    :return:
+    """
     FILE = "clean.csv"
     data = []
     for c in content:
@@ -64,6 +80,11 @@ async def clean_incidents(content, dir):
     await create_inc_csv(data)
 
 async def move_arr_summary(dir):
+    """
+
+    :param dir:
+    :return:
+    """
     assert os.path.isdir(dir)
     FILE = "CleanSummary.txt"
     if os.path.isfile(dir + FILE):
@@ -85,6 +106,12 @@ async def move_arr_summary(dir):
     return flag
 
 async def create_clean_file(dir, field):
+    """
+
+    :param dir:
+    :param field:
+    :return:
+    """
     FILE = "CleanSummary.txt"
     #if os.path.isfile(dir + FILE):
         #os.remove(dir + FILE)
@@ -101,6 +128,13 @@ async def create_clean_file(dir, field):
         return False
 
 async def load_summaries(case_file, inc_file, arr_file):
+    """
+
+    :param case_file:
+    :param inc_file:
+    :param arr_file:
+    :return:
+    """
     if case_file:
         await sum_transform_case()
     if True:
@@ -138,6 +172,12 @@ async def sum_transform_arr(path="./data/csv/arrest/CleanSummary.txt"):
         await analyze_arrest_csv()
 
 async def create_clean_csv_arr(clean_line: str, FILE="./data/csv/arrest/clean.csv"):
+    """
+
+    :param clean_line:
+    :param FILE:
+    :return:
+    """
     #print(repr(clean_line))
     better_line = clean_line.replace(' \\t', ' ')
     if len(better_line) > 0:
@@ -150,6 +190,11 @@ async def create_clean_csv_arr(clean_line: str, FILE="./data/csv/arrest/clean.cs
         cln.close()
 
 async def analyze_arrest_csv(FILE="./data/csv/arrest/clean.csv"):
+    """
+
+    :param FILE:
+    :return:
+    """
     correct_data = []
     with open(FILE, 'r') as rdr:
         rows = rdr.readlines()
@@ -162,6 +207,11 @@ async def analyze_arrest_csv(FILE="./data/csv/arrest/clean.csv"):
     await create_arrest_csv(data=correct_data)
 
 async def analyze_inc_csv(FILE="./data/csv/arrest/clean.csv"):
+    """
+
+    :param FILE:
+    :return:
+    """
     correct_data = []
     with open(FILE, 'r') as rdr:
         rows = rdr.readlines()
@@ -175,6 +225,12 @@ async def analyze_inc_csv(FILE="./data/csv/arrest/clean.csv"):
     return correct_data
 
 async def create_arrest_csv(data: list, FILE="./data/csv/arrest/arrest.csv"):
+    """
+
+    :param data:
+    :param FILE:
+    :return:
+    """
     header = "arrest_time, case_number, arrest_location, offense, arrestee_name, arrestee_birthday, city, state, zip, status, officer\n"
     with open(FILE, 'w+') as fp:
         fp.write(header)
@@ -183,6 +239,12 @@ async def create_arrest_csv(data: list, FILE="./data/csv/arrest/arrest.csv"):
         fp.close()
 
 async def create_inc_csv(content, FILE='./data/csv/incident/clean.csv'):
+    """
+
+    :param content:
+    :param FILE:
+    :return:
+    """
     header = "incident_number, location, nature, incident_ori\n"
     with open(FILE, 'w+') as fp:
         fp.write(header)
@@ -194,6 +256,11 @@ async def create_inc_csv(content, FILE='./data/csv/incident/clean.csv'):
 
 
 async def sum_transform_inc(path="./data/csv/incident/clean.csv"):
+    """
+
+    :param path:
+    :return:
+    """
     #data = await analyze_inc_csv()
     #print(data)
     content = []
@@ -213,15 +280,26 @@ async def sum_transform_inc(path="./data/csv/incident/clean.csv"):
 
 
 def comma_counter(field: str):
+    """
+
+    :param field:
+    :return:
+    """
     total = 0
     for f in field:
         if f == ',':
             total += 1
     return total
 async def main():
+    """
+
+    :return:
+    """
     c, i, a = await create_directories()
     await load_summaries(c, i, a)
 
 if __name__ == "__main__":
+    """
+    """
     loop = asyncio.get_event_loop()
     loop.run_until_complete(main())

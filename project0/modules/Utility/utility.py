@@ -7,6 +7,11 @@ import numpy as np
 from . import toss_download as td
 
 def fetch_txt_all(dir="../../../data/txt/"):
+    """
+
+    :param dir:
+    :return:
+    """
     res = td.open_file()
     content = res[0].splitlines()
     #print(content)
@@ -26,6 +31,11 @@ def fetch_results(url="", dir="/home/mulh8377/Courses/TextAnalyis/projects/cs529
     return dir+file
 
 def extract_results(data):
+    """
+
+    :param data:
+    :return:
+    """
     pdfReader = PyPDF2.PdfFileReader(data)
     print(pdfReader.numPages)
     page_obj = pdfReader.getPage(0)

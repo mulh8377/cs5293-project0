@@ -12,6 +12,12 @@ import modules.Storage.tosstorage as T_Storage
 import modules.Utility.utility as T_Utility
 
 def fetchincidents(url, tipe):
+    """
+
+    :param url:
+    :param tipe:
+    :return:
+    """
     if url == "all":                            # default parameter if make run-project is called.
         data_loc = T_Utility.fetch_txt_all()
     else:
@@ -19,9 +25,11 @@ def fetchincidents(url, tipe):
     extractincidents(data=data_loc, tipe=tipe)
 
 def extractincidents(data, tipe):
-    #print("extract the pdf fields here")
     """
-    TODO:
+
+    :param data:
+    :param tipe:
+    :return:
     """
     subprocess.call(['bash', './scripts/transform-pdf.sh'])
     os.system('clear')
@@ -38,6 +46,12 @@ def extractincidents(data, tipe):
         print('error')
     importincidents(data, tipe)
 def importincidents(data, tipe):
+    """
+
+    :param data:
+    :param tipe:
+    :return:
+    """
     #print(data)
     #connection = T_Storage.connect_to_db()
     #print(connection)
@@ -60,6 +74,11 @@ def importincidents(data, tipe):
 
     #data.to_sql("CrimeReport", connection, if_exists='append', index=False)
 def getdatabase(tipe):
+    """
+
+    :param tipe:
+    :return:
+    """
     #elements_in_db
     if tipe == 1:
         elements_in_db = pd.read_sql("SELECT * from CrimeReport", T_Storage.connect_to_db())
@@ -71,7 +90,12 @@ def getdatabase(tipe):
     #print(elements_in_db)
     instances = list(elements_in_db['nature'])
     return instances
-def status(db_data, row_len: int):
+def status(db_data):
+    """
+
+    :param db_data:
+    :return:
+    """
     for d in db_data:
         cnt = db_data.count(d)
         print(f'{d}|{cnt}')
@@ -80,6 +104,12 @@ def status(db_data, row_len: int):
             db_data.pop(cnt)
 
 def main(url, tipe=2):
+    """
+
+    :param url:
+    :param tipe:
+    :return:
+    """
     T_Storage.create_db()
     os.system('clear')      # create the new database
     #print(url)

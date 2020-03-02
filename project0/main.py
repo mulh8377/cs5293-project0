@@ -110,7 +110,8 @@ def main(url, tipe=2):
     :param tipe:
     :return:
     """
-    T_Storage.create_db()   # initializes normanpd.db
+    subprocess.call(['bash', 'scripts/jah_db.sh'])   
+#T_Storage.create_db()   # initializes normanpd.db
     os.system('clear')      # create the new database
     #print(url)
     #fetchincidents(url)
@@ -121,7 +122,8 @@ def main(url, tipe=2):
 
 if __name__ == "__main__":
 
-    T_Storage.kill_db()                         # destroy the existing database
+    subprocess.call(['bash', 'scripts/toss_db.sh'])
+    #T_Storage.kill_db()                         # destroy the existing database
     os.system('clear')                          ## clears up the terminal
 
     parser = argparse.ArgumentParser()

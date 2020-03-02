@@ -6,7 +6,7 @@ import PyPDF2
 import numpy as np
 from . import toss_download as td
 
-def fetch_txt_all(dir="../../../data/txt/"):
+def fetch_txt_all(dir="projects/cs5293-project0/data/txt/"):
     """
 
     :param dir:
@@ -26,7 +26,7 @@ def fetch_txt_all(dir="../../../data/txt/"):
         storage_pdf.append(fetch_results(url=element, file=path))
     return storage_pdf
 
-def fetch_results(url="", dir="/home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/data/pdf/", file="test.pdf"):
+def fetch_results(url="", dir="/projects/cs5293-project0/data/pdf/", file="test.pdf"):
     urllib.request.urlretrieve(url, dir+file)
     return dir+file
 

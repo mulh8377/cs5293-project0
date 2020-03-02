@@ -8,7 +8,7 @@ template with_open(name: string, mode: char, body: untyped) =
 
 proc open_file*(): seq[string] {.exportpy.} =
  var urls = newSeq[string]()
- let fp = "/home/mulh8377/Courses/TextAnalyis/projects/cs5293-project0/data/txt/urls.txt"
+ let fp = "/projects/cs5293-project0/data/txt/urls.txt"
  with_open(fp, 'r'): # Mimic Python with open("file", mode='r') as file
     urls.add(file.readAll())# Code inside the template, this 2 lines are "body" argument on the template   # This line uses "file" variable
 

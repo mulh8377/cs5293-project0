@@ -6,37 +6,47 @@ Jared Mulhausen
 - email         ->      jaredmulhausen@ou.edu
 - student_id    ->      113358377
 
-## Fields that Need Additional Editing
-Case Number
-
-Arrest Location
-
-Offense
-
-Arrestee
-
-Arrestee Address
-
-City
-
-Status
-
-Officer
-
 # cs5293-project0
 The Norman, Oklahoma police department regularly reports of incidents arrests and other activity. This project is meant to
 showcase some recent skills we learned with the linux commands and python modules used to scrape data from the world wide web.
 Norman PD keeps a monthly report of their activity online and our mission is to write a program that can parse this report 
 and store it into a sqlite3 database.
 
-## Useful Make Commands
+## Useful Commands
 
-- make crawl
+- make build
+    - installs and updates the system before running the program
+- make data-crawl
     - gets the recent crime reports from the norman pd website
-- make update
-    - commits and pushes updates to github.
-- make run **to do**
+- make run-tests
+    - runs all tests located in the tests/ directory and saves it inside docs/test_results
+- make print-tests
+    - outputs all test_results to the console for easy interpretation
 
+- pipenv run python project/main.py --incidents "url"
+    - runs the program for a single given url
+- make run-inc
+    - creates one large csv file for all incident pdfs on the website
+    - runs the program and stores all the data into the normanpd.db
+    - **this command works locally, but is having trouble running on the vm  --- use the command above!**
+### Test Files
+  - test_editor.py
+    - tests execution speed of tosscsv, tosspdf, tosstxt
+    - these scripts are primarily used to parse data from the crawled website.
+  - test_crime.py
+    - tests the Crime.py file.
+    - file was not utilized in this project
+  - test_download.py
+    - tests fetch_txt_all asserts that the directory contains multiple pdf files
+    - tests fetch_results asserts that it contains the pdf.
+  - test_crawler.py
+    - one test to check if make wipe-data works -- this should have been extended.
+  - test_storage.py
+    - tests insertion into a table
+    - tests fetching of the entire table
+    - tests fetching of a single value
+    - test_storage should have been extended to include insertion, and fetching from Incident. I originally wrote the file for testing related to Spring 2019 Project0 (sorry!)
+  
 ### Dependencies 
 pandas==1.0.1
   - numpy [required: >=1.13.3, installed: 1.18.1]

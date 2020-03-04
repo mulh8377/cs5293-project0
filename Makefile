@@ -12,7 +12,6 @@ wipe-data:
 
 build:
 	bash scripts/install-deps.sh
-	bash scripts/wipe-data.sh
 	bash scripts/clean-db.sh
 	rm -f data/csv/arrest/*.txt
 	rm -f data/csv/case/*.txt
